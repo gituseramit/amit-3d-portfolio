@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --clay-bg: #E9E8D2;
+  --clay-dark: #292D21;
+  --clay-card: #F4F0DF;
+}
+
+body {
+  margin: 0;
+  background-color: #E9E8D2;
+  color: #292D21;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Claymorphic Utility Classes */
+.clay-card {
+  background: linear-gradient(135deg, rgba(250, 247, 233, 0.94) 0%, rgba(239, 235, 216, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 14px 18px 36px rgba(49, 55, 34, 0.09), -10px -10px 24px rgba(255, 255, 255, 0.75), inset 1px 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.clay-pill {
+  background: linear-gradient(135deg, rgba(250, 247, 233, 0.97) 0%, rgba(237, 235, 217, 0.92) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 6px 10px 22px rgba(49, 55, 34, 0.08), -6px -6px 16px rgba(255, 255, 255, 0.8);
+}
+
+.clay-button-dark {
+  background: linear-gradient(135deg, #657749 0%, #3B492D 100%);
+  color: #F7F4E8;
+  box-shadow: 0 10px 22px rgba(42, 49, 31, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.clay-button-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(42, 49, 31, 0.32), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.clay-button-dark:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 14px rgba(42, 49, 31, 0.22), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.clay-screen-frame {
+  background: #F1EDDD;
+  border-radius: 28px;
+  border: 4px solid #E7E3D1;
+  box-shadow: 20px 24px 44px rgba(32, 49, 25, 0.12), -10px -10px 26px rgba(255, 255, 255, 0.9), inset 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Layered Paper Cave Shadows */
+.cave-layer-1 {
+  background-color: #A7B77A;
+  box-shadow: inset 0 8px 24px rgba(43, 52, 30, 0.3);
+}
+
+.cave-layer-2 {
+  background-color: #78885B;
+  box-shadow: inset 0 10px 28px rgba(43, 52, 30, 0.35);
+}
+
+.cave-layer-3 {
+  background-color: #52613E;
+  box-shadow: inset 0 12px 32px rgba(32, 40, 24, 0.42);
+}
+
+.cave-layer-4 {
+  background-color: #303A27;
+  box-shadow: inset 0 16px 40px rgba(25, 31, 19, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #E7E5D1;
+}
+::-webkit-scrollbar-thumb {
+  background: #AEB58A;
+  border-radius: 9999px;
+  border: 2px solid #E7E5D1;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7D8D5E;
+}
+
+/* Subtle organic grain overlay */
+.bg-grain {
+  background-image: radial-gradient(rgba(68, 74, 47, 0.055) 1px, transparent 0);
+  background-size: 26px 26px;
+}
