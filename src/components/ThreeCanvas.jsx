@@ -67,26 +67,36 @@ export default function ThreeCanvas() {
     // Floating Spheres / Clay Blobs configuration
     const spheresData = [
       // Left cluster
-      { x: -9.5, y: 3.5, z: -2, radius: 2.2, matIdx: 0, speed: 0.008, phase: 0 },
-      { x: -7.5, y: -2.8, z: 0, radius: 1.4, matIdx: 1, speed: 0.012, phase: 1.2 },
-      { x: -11, y: -0.5, z: -3, radius: 2.8, matIdx: 2, speed: 0.006, phase: 2.4 },
-      { x: -6.2, y: 1.8, z: 2, radius: 0.8, matIdx: 4, speed: 0.014, phase: 3.1 },
+      { x: -11.5, y: 3.5, z: -2, radius: 1.7, matIdx: 0, speed: 0.008, phase: 0 },
+      { x: -10, y: -2.8, z: 0, radius: 1.1, matIdx: 1, speed: 0.012, phase: 1.2 },
+      { x: -12, y: -0.5, z: -3, radius: 2.2, matIdx: 2, speed: 0.006, phase: 2.4 },
+      { x: -9.3, y: 1.8, z: 2, radius: 0.8, matIdx: 4, speed: 0.014, phase: 3.1 },
       
       // Right cluster
-      { x: 9.8, y: 4.2, z: -2, radius: 2.4, matIdx: 2, speed: 0.007, phase: 1.5 },
-      { x: 7.8, y: 2.0, z: 1, radius: 1.2, matIdx: 0, speed: 0.011, phase: 0.7 },
-      { x: 11.2, y: -1.5, z: -1, radius: 2.0, matIdx: 1, speed: 0.009, phase: 2.9 },
-      { x: 6.8, y: -3.5, z: 1.5, radius: 0.9, matIdx: 3, speed: 0.015, phase: 4.0 },
+      { x: 11.5, y: 4.2, z: -2, radius: 1.8, matIdx: 2, speed: 0.007, phase: 1.5 },
+      { x: 10, y: 2.0, z: 1, radius: 1.0, matIdx: 0, speed: 0.011, phase: 0.7 },
+      { x: 12, y: -1.5, z: -1, radius: 1.8, matIdx: 1, speed: 0.009, phase: 2.9 },
+      { x: 9.3, y: -3.5, z: 1.5, radius: 0.9, matIdx: 3, speed: 0.015, phase: 4.0 },
 
       // Center background floating accent pebbles
-      { x: -2.5, y: 5.5, z: -4, radius: 1.1, matIdx: 3, speed: 0.010, phase: 1.8 },
-      { x: 3.2, y: 5.8, z: -3.5, radius: 1.3, matIdx: 1, speed: 0.008, phase: 3.5 },
-      { x: -3.8, y: -5.2, z: -2, radius: 1.6, matIdx: 5, speed: 0.009, phase: 2.1 },
-      { x: 4.2, y: -5.5, z: -2.5, radius: 1.8, matIdx: 0, speed: 0.007, phase: 0.4 },
+      { x: -5.5, y: 1.4, z: -4, radius: 0.95, matIdx: 3, speed: 0.010, phase: 1.8 },
+      { x: 5.7, y: 1.5, z: -3.5, radius: 1, matIdx: 1, speed: 0.008, phase: 3.5 },
+      { x: -5.8, y: -5.2, z: -2, radius: 1.3, matIdx: 5, speed: 0.009, phase: 2.1 },
+      { x: 5.8, y: -5.5, z: -2.5, radius: 1.45, matIdx: 0, speed: 0.007, phase: 0.4 },
     ];
 
     const spheres = spheresData.map(data => {
-      const geometry = new THREE.SphereGeometry(data.radius, 24, 24);
+      const geometry = new THREE.SphereGeometry(data.radius * 0.8, 32, 24);
+      const positions = geometry.attributes.position;
+      for (let i = 0; i < positions.count; i += 1) {
+        const x = positions.getX(i);
+        const y = positions.getY(i);
+        const z = positions.getZ(i);
+        const bulge = 1 + 0.09 * Math.sin(x * 2.7 + y * 1.9 + data.phase) * Math.cos(z * 2.4 - y * 1.6);
+        positions.setXYZ(i, x * bulge, y * bulge, z * bulge);
+      }
+      positions.needsUpdate = true;
+      geometry.computeVertexNormals();
       const mesh = new THREE.Mesh(geometry, materials[data.matIdx]);
       mesh.position.set(data.x, data.y, data.z);
       mesh.castShadow = true;

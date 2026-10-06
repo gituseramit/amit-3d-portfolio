@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Github } from './Icons';
 import { recentWorks } from '../data/portfolioData.js';
 
 function Preview({ project }) {
